@@ -1,0 +1,48 @@
+{# {% extends 'base.html.twig' %}
+
+{% block title %}List des employes{% endblock %}
+
+{% block body %}
+{% for employe in employes %}
+
+{% endfor %}
+{% endblock %} #}
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    Liste des employés
+{% endblock %}
+
+{% block body %}
+    <h1>Liste des employés</h1>
+
+    {% if mpls is not empty %}
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nom</th>
+                    <th>Prenom</th>
+                    <th>Service</th>
+                    <th>Salaire</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for employe in mpls %}
+                    <tr>
+                        <td>{{ employe.id }}</td>
+                        <td>{{ employe.nom }}</td>
+                        <td>{{ employe.prenom }}</td>
+                        <td>{{ employe.service }}</td>
+                        <td>{{ employe.salaire }}</td>
+                        <td><a href="{{path('edit_employe', {'id':employe.id})}}">modifier l'employe</a></td>
+                        <td><a href="{{path('supprimer_employe', {'id':employe.id})}}">supprimer l'employe</a></td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <p>Aucun employé trouvé.</p>
+    {% endif %}
+{% endblock %}
+
